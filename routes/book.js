@@ -5,5 +5,8 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.send('Express RESTful API');
 });
+router.get('/igor', function(req, res, next) {
+  res.send('Igor');
+});
 
 module.exports = router;
