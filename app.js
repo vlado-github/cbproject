@@ -5,27 +5,21 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cors = require('cors');
 var bodyParser = require("body-parser");
-var port = process.env.PORT || 3000;
-
-
 
 var apiRouter = require('./routes/book');
+var users = require('./routes/users');
 
 var app = express();
 
-//iz Tominog
 app.use(bodyParser.json());
 app.use(cors());
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
-///
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(logger('dev'));
 app.use(express.json());
-//app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'dist/climboard')));
 app.use('/', express.static(path.join(__dirname, 'dist/climboard')));
 app.use('/api', apiRouter);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,26 +37,4 @@ app.use(function(err, req, res, next) {
   res.send(err.status);
 });
 
-
-
-//kopirano iz Toninog
-//  var Users = require('./routes/Users');
-
-// app.use('/users', Users);
-
-// // app.get('/', function (req, res) {  
-// //     res.sendFile('dist/register.html', { root: __dirname });
-// //  });
-
-// //  app.get('/login', function (req, res) {  
-// //     res.sendFile('dist/login.html', { root: __dirname });
-// //  });
-
-
-
- 
-// app.listen(port,function(){
-//     console.log("Server is running on port: "+port);
-// });
-// ///
 module.exports = app;

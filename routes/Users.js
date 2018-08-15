@@ -1,6 +1,6 @@
 var express = require('express');
 var users = express.Router();
-var database = require('../Database/database');
+var database = require('../server/database');
 var cors = require('cors')
 var jwt = require('jsonwebtoken');
 var token;
@@ -9,6 +9,10 @@ users.use(cors());
 
  
 process.env.SECRET_KEY = "devesh";
+
+users.get('/', function(req, res, next) {
+    res.send('User raid');
+  });
 
 // register
 users.post('/register', function(req, res) {
