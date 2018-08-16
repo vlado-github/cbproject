@@ -1,57 +1,51 @@
 var express = require('express');
-var users = express.Router();
 var database = require('../server/database');
-var cors = require('cors')
-var jwt = require('jsonwebtoken');
-var token;
 var climbingRoute = express.Router();
+//var users = express.Router();
+//var cors = require('cors')
+//var jwt = require('jsonwebtoken');
+//var token;
+
 
 //users.use(cors());
-
- 
 //process.env.SECRET_KEY = "devesh";
 
-climbingRoute.post('/add', function(req, res, next) {
-    //OVDJE TOMO TREBAS NAPRAVITI KOD KOJI UPISUJE SMJER U BAZU PODATAKA
-    res.send('Climbing Route Add Radi');
-  });
 
-// // register
-// users.post('/register', function(req, res) {
+// Adding Climbing route to DB
+climbingRoute.post('/add', function(req, res) {
+    var today = new Date();
+    var appData = {
+        "error": 1,
+        "data": ""
+    };
+    var userData = {
+        "routeName": req.body.routeName,
+        "routeGrade": req.body.routeGrade,
+        "routeGym": req.body.routeGym,
+        "routePhoto": req.body.routePhoto,
+        "created": today
+    }
 
-//     var today = new Date();
-//     var appData = {
-//         "error": 1,
-//         "data": ""
-//     };
-//     var userData = {
-//         "first_name": req.body.first_name,
-//         "last_name": req.body.last_name,
-//         "email": req.body.email,
-//         "password": req.body.password,
-//         "created": today
-//     }
-
-//     database.connection.getConnection(function(err, connection) {
-//         if (err) {
-//             appData["error"] = 1;
-//             appData["data"] = "Internal Server Error";
-//             res.status(500).json(appData);
-//         } else {
-//             connection.query('INSERT INTO users SET ?', userData, function(err, rows, fields) {
-//                 if (!err) {
-//                     appData.error = 0;
-//                     appData["data"] = "User registered successfully!";
-//                     res.status(201).json(appData);
-//                 } else {
-//                     appData["data"] = "Error Occured!";
-//                     res.status(400).json(appData);
-//                 }
-//             });
-//             connection.release();
-//         }
-//     });
-// });
+    database.connection.getConnection(function(err, connection) {
+        if (err) {
+            appData["error"] = 1;
+            appData["data"] = "Internal Server Error";
+            res.status(500).json(appData);
+        } else {
+            connection.query('INSERT INTO users SET ?', userData, function(err, rows, fields) {
+                if (!err) {
+                    appData.error = 0;
+                    appData["data"] = "User registered successfully!";
+                    res.status(201).json(appData);
+                } else {
+                    appData["data"] = "Error Occured!";
+                    res.status(400).json(appData);
+                }
+            });
+            connection.release();
+        }
+    });
+});
 
 
 // // login 
