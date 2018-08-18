@@ -1,70 +1,48 @@
+<!-- KOristiti ovdje HTTP requests od Angualra umejsto action method varijante -->
 <form class="container" action="route/add" method="POST">
   <br>
   <div class="form-group">
     <label for="routeName">Route name:</label>
-    <input class="form-control" id="routeName" name="routeName" placeholder="Add the route name" required autofocus>
+    <input class="form-control" name="routeName" placeholder="Add the route name" required autofocus>
   </div>
   <div class="form-group">
     <label for="routeGrade">Route grade:</label>
-    <select class="form-control" id="routeGrade" name="routeGrade"required>
+    <select class="form-control" name="routeGrade" required>
       <option value="" disabled>Select route grade</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>4+</option>
-      <option>5</option>
-      <option>5+</option>
-      <option>6a</option>
-      <option>6a+</option>
-      <option>6b</option>
-      <option>6b+</option>
-      <option>6c</option>
-      <option>6c+</option>
-      <option>7a</option>
-      <option>7a+</option>
-      <option>7b</option>
-      <option>7b+</option>
-      <option>7c</option>
-      <option>7c+</option>
-      <option>8a</option>
-      <option>8a+</option>
-      <option>8b</option>
-      <option>8b+</option>
-      <option>8c</option>
-      <option>8c+</option>
-      <option>9a</option>
+      <option *ngFor="let grade of grades">{{grade}}</option>
     </select>
   </div>
+  <!-- Ovo ljepse napisati -->
   <div class="form-group">
     <label for="routeGym">Gym:</label>
-    <select class="form-control" id="routeGym" name="routeGym" #routeGym required (change)="addGymSection(routeGym.value)" >
+    <select class="form-control" name="routeGym" #routeGym required (change)="addGymSection(routeGym.value)">
       <option value="" disabled>Select the gym</option>
       <option>Extreme, Banja Luka</option>
       <option>Sokolski dom, Banja Luka</option>
       <option>Granit, Belgrade</option>
-      <option >+ Add new gym</option>
+      <option>+ Add new gym</option>
     </select>
   </div>
   <div *ngIf="addGym">
     <div class="form-group">
-        <label for="gymName">Gym name:</label>
-        <input class="form-control" id="gymName" name="gymName" placeholder="Add the gym name" required>
+      <label for="gymName">Gym name:</label>
+      <input class="form-control" name="gymName" placeholder="Add the gym name" required>
     </div>
     <div class="form-group">
-        <label for="gymCity">Gym city:</label>
-        <input class="form-control" id="gymCity" name="gymCity" placeholder="Add the gym city" required>
+      <label for="gymCity">Gym city:</label>
+      <input class="form-control" name="gymCity" placeholder="Add the gym city" required>
     </div>
     <div class="form-group">
-        <label for="gymCountry">Gym country:</label>
-        <input class="form-control" id="gymCountry" name="gymCountry"placeholder="Add the gym country" required>
+      <label for="gymCountry">Gym country:</label>
+      <select class="form-control" name="gymCountry" required>
+        <option value="" disabled>Add the gym country</option>
+        <option *ngFor="let country of countries">{{country.name}}</option>
+      </select>
     </div>
   </div>
   <div class="form-group">
     <label for="routePhoto">Route photo:</label>
-    <!-- <input type="file" class="form-control-file" #routePhoto name="routePhoto" accept="image/*" required (change)="showPhoto(routePhoto.files[0])"> -->
     <input type="file" class="form-control-file" #routePhoto name="routePhoto" accept="image/*" required (change)="fileCheck(routePhoto.files[0]);">
-
   </div>
   <button type="submit" class="btn btn-primary btn-info">Add route</button>
 </form>
@@ -73,9 +51,5 @@
 <br>
 <div class="container">
   <h5>Preview</h5>
-    <img [src]="routePhotoPath.path">
+  <img [src]="routePhotoPath.path">
 </div>
-
-
-
-
