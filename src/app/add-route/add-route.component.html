@@ -3,7 +3,7 @@
   <br>
   <div class="form-group">
     <label for="routeName">Route name:</label>
-    <input class="form-control" name="routeName" placeholder="Add the route name" required autofocus>
+    <input type="text" minlength="3" maxlength="40" class="form-control" name="routeName" placeholder="Add the route name" required autofocus>
   </div>
   <div class="form-group">
     <label for="routeGrade">Route grade:</label>
@@ -12,7 +12,6 @@
       <option *ngFor="let grade of grades">{{grade}}</option>
     </select>
   </div>
-  <!-- Ovo ljepse napisati -->
   <div class="form-group">
     <label for="routeGym">Gym:</label>
     <select class="form-control" name="routeGym" #routeGym required (change)="addGymSection(routeGym.value)">
@@ -23,14 +22,14 @@
       <option>+ Add new gym</option>
     </select>
   </div>
-  <div *ngIf="addGym">
+  <div *ngIf="showAddGymFields">
     <div class="form-group">
       <label for="gymName">Gym name:</label>
-      <input class="form-control" name="gymName" placeholder="Add the gym name" required>
+      <input type="text" minlength="3" maxlength="40" class="form-control" name="gymName" placeholder="Add the gym name" required>
     </div>
     <div class="form-group">
       <label for="gymCity">Gym city:</label>
-      <input class="form-control" name="gymCity" placeholder="Add the gym city" required>
+      <input type="text" minlength="3" maxlength="30" class="form-control" name="gymCity" placeholder="Add the gym city" required>
     </div>
     <div class="form-group">
       <label for="gymCountry">Gym country:</label>
@@ -39,6 +38,10 @@
         <option *ngFor="let country of countries">{{country.name}}</option>
       </select>
     </div>
+  </div>
+  <div class="form-group">
+    <label for="routeDescription">Route description (optional):</label>
+    <input type="text" minlength="3" maxlength="300" class="form-control" name="routeDescription" placeholder="Add the route description">
   </div>
   <div class="form-group">
     <label for="routePhoto">Route photo:</label>

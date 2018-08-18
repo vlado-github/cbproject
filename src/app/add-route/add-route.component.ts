@@ -256,7 +256,7 @@ export class AddRouteComponent implements OnInit {
     {name: 'Zambia', code: 'ZM'}, 
     {name: 'Zimbabwe', code: 'ZW'} 
   ]
-  addGym: boolean = false;
+  showAddGymFields: boolean = false;
   routePhotoPath: {path: string} = {path: ""};
   
   constructor(private sanitizer: DomSanitizer) {
@@ -266,11 +266,11 @@ export class AddRouteComponent implements OnInit {
   }
 
   // Loading of additional fields in case user select Add new gym
-  addGymSection (selected): void {
-    if (selected == "+ Add new gym"){
-      this.addGym = true;
+  addGymSection (selectedRouteGym): void {
+    if (selectedRouteGym == "+ Add new gym"){
+      this.showAddGymFields = true;
     } else {
-      this.addGym = false;
+      this.showAddGymFields = false;
     }
   }
 
@@ -284,11 +284,7 @@ export class AddRouteComponent implements OnInit {
     return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
   }
 
- 
-  
-  
-
-  //function that check if the selected file has image extension
+  // Checking if the selected file has image extension and calling reader
   fileCheck(file): void {
     if (file) {
 			if (/^image\//i.test(file.type)) {
@@ -298,6 +294,7 @@ export class AddRouteComponent implements OnInit {
 			}
 		}
   }
+  
   readFile(file): void {
     console.log("URL read File" + this.routePhotoPath)
     let _routePhotoPath = this.routePhotoPath;
