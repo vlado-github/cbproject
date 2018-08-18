@@ -7,8 +7,6 @@ var cors = require('cors');
 var bodyParser = require("body-parser");
 
 var apiRouter = require('./routes/book');
-var users = require('./routes/users');
-var climbingRoute = require('./routes/climbingRoute');
 
 var app = express();
 
@@ -20,8 +18,6 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'dist/climboard')));
 app.use('/', express.static(path.join(__dirname, 'dist/climboard')));
 app.use('/api', apiRouter);
-app.use('/users', users);
-app.use('/route', climbingRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
