@@ -115,4 +115,5 @@ typings/
 
 # Other folders/files to ignore
 utils/
+bin/
 # End of https://www.gitignore.io/api/node,angular,visualstudiocode
