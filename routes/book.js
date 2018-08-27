@@ -17,7 +17,7 @@ router.post('/addRoute', function(req, res) {
       "error": 1,
       "data": ""
   };
-  var userData = {
+  var routeData = {
       "routeName": req.body.routeName,
       "routeGrade": req.body.routeGrade,
       "routeGym": req.body.routeGym,
@@ -31,10 +31,10 @@ router.post('/addRoute', function(req, res) {
           appData["data"] = "Internal Server Error";
           res.status(500).json(appData);
       } else {
-          connection.query('INSERT INTO users SET ?', userData, function(err, rows, fields) {
+          connection.query('INSERT INTO routes SET ?', routeData, function(err, rows, fields) {
               if (!err) {
                   appData.error = 0;
-                  appData["data"] = "User registered successfully!";
+                  appData["data"] = "Route successfully added!";
                   res.status(201).json(appData);
               } else {
                   appData["data"] = "Error Occured!";
