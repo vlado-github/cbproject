@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { RouteService } from '../route.service';
+
 
 @Component({
   selector: 'app-add-route',
@@ -259,10 +261,15 @@ export class AddRouteComponent implements OnInit {
   showAddGymFields: boolean = false;
   routePhotoPath: { path: string } = { path: "" };
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private sanitizer: DomSanitizer, private routeService: RouteService) {
   }
 
   ngOnInit() {
+    this.addRoute();
+  }
+
+  addRoute(): void {
+    this.routeService.addRoute().subscribe(jsonObj => console.log(jsonObj.test));
   }
 
   // Loading of additional fields in case user select Add new gym

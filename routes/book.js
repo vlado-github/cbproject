@@ -5,7 +5,8 @@ var router = express.Router();
 
 // Api home page
 router.get('/', function(req, res, next) {
-  res.send('Express RESTful API');
+  res.send("API home page");
+//   res.send({"test":"API home page"});
 });
 
 
