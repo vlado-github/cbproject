@@ -261,7 +261,8 @@ export class AddRouteComponent implements OnInit {
   ]
   gyms: {id: number, name: string, city: string}[] = [{id: 1, name: "Extreme", city: "Banja Luka"}, {id: 2, name: "Sokolski", city: "Banja Luka"}, {id: 3, name: "Granit", city: "Beograd"}, ]
   showAddGymFields: boolean = false;
-  
+  routePhotoFake;
+
   newRoute: Route = {
     name: "",
     grade: "",
@@ -275,7 +276,10 @@ export class AddRouteComponent implements OnInit {
     }
   };
   
-  
+  submitted = false;
+
+  onSubmit() { this.submitted = true; }
+
   constructor(private sanitizer: DomSanitizer, private routeService: RouteService) {
   }
   // TODO: Remove this when we're done

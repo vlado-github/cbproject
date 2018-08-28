@@ -1,9 +1,17 @@
 <!-- KOristiti ovdje HTTP requests od Angualra umejsto action method varijante -->
-<form class="container" action="api/addRoute" method="POST">
+<form class="container" #addRouteForm="ngForm" (ngSubmit)="onSubmit()">
   <br>
   <div class="form-group">
     <label for="routeName">Route name:</label>
-    <input type="text" minlength="3" maxlength="40" class="form-control" name="routeName" placeholder="Add the route name" required autofocus [(ngModel)]="newRoute.name">
+    <input type="text" minlength="3" maxlength="40" class="form-control" name="routeName" placeholder="Add the route name" required autofocus [(ngModel)]="newRoute.name" #routeName="ngModel">
+  </div>
+  <div *ngIf="routeName.invalid && (routeName.dirty || routeName.touched)" class="alert alert-danger">
+    <div *ngIf="routeName.errors.required">
+      Route name is required.
+    </div>
+    <div *ngIf="routeName.errors.minlength">
+      Route name must be at least 3 characters long.
+    </div>
   </div>
   <div class="form-group">
     <label for="routeGrade">Route grade:</label>
@@ -15,7 +23,7 @@
   <div class="form-group">
     <label for="routeGym">Gym:</label>
     <select class="form-control" name="routeGym" #routeGym required (change)="addGymSection(routeGym.value)" [(ngModel)]="newRoute.gym.id">
-      <option value="" disabled>Select the gym</option>
+      <option value="null" disabled>Select the gym</option>
       <option *ngFor="let gym of gyms" value="{{gym.id}}">{{gym.name}}, {{gym.city}}</option>
       <option value="null">+ Add new gym</option>
     </select>
@@ -23,11 +31,27 @@
   <div *ngIf="showAddGymFields">
     <div class="form-group">
       <label for="gymName">Gym name:</label>
-      <input type="text" minlength="3" maxlength="40" class="form-control" name="gymName" #gymName placeholder="Add the gym name" required [(ngModel)]="newRoute.gym.name">
+      <input type="text" minlength="3" maxlength="40" class="form-control" name="gymName" #gymName="ngModel" placeholder="Add the gym name" required [(ngModel)]="newRoute.gym.name">
+    </div>
+    <div *ngIf="gymName.invalid && (gymName.dirty || gymName.touched)" class="alert alert-danger">
+      <div *ngIf="gymName.errors.required">
+        Gym name is required.
+      </div>
+      <div *ngIf="gymName.errors.minlength">
+        Gym name must be at least 3 characters long.
+      </div>
     </div>
     <div class="form-group">
       <label for="gymCity">Gym city:</label>
-      <input type="text" minlength="3" maxlength="30" class="form-control" name="gymCity" placeholder="Add the gym city" required [(ngModel)]="newRoute.gym.city">
+      <input type="text" minlength="3" maxlength="30" class="form-control" name="gymCity" #gymCity="ngModel" placeholder="Add the gym city" required [(ngModel)]="newRoute.gym.city">
+    </div>
+    <div *ngIf="gymCity.invalid && (gymCity.dirty || gymCity.touched)" class="alert alert-danger">
+      <div *ngIf="gymCity.errors.required">
+        Gym city is required.
+      </div>
+      <div *ngIf="gymCity.errors.minlength">
+        Gym city must be at least 3 characters long.
+      </div>
     </div>
     <div class="form-group">
       <label for="gymCountry">Gym country:</label>
@@ -39,17 +63,19 @@
   </div>
   <div class="form-group">
     <label for="routeDescription">Route description (optional):</label>
-    <input type="text" minlength="3" maxlength="300" class="form-control" name="routeDescription" placeholder="Add the route description" [(ngModel)]="newRoute.description">
+    <input type="text" maxlength="300" class="form-control" name="routeDescription" placeholder="Add the route description" [(ngModel)]="newRoute.description">
   </div>
+  
   <div class="form-group">
     <label for="routePhoto">Route photo:</label>
-    <input type="file" class="form-control-file" #routePhoto name="routePhoto" accept="image/*" required (change)="fileCheck(routePhoto.files[0]);">
+    <input type="file" class="form-control-file" #routePhotoFakeRef="ngModel" #routePhoto name="routePhoto" accept="image/*" required (change)="fileCheck(routePhoto.files[0]);" [(ngModel)]="routePhotoFake">
   </div>
-  <button type="submit" class="btn btn-primary btn-info">Add route</button>
+  <button type="submit" class="btn btn-primary btn-info" [disabled]="!addRouteForm.form.valid">Add route</button>
 </form>
 
 <!-- Preview of loaded photo -->
 <br>
+<p>{{photoTemp}}</p>
 <div class="container">
   <h5>Preview</h5>
   <img [src]="newRoute.photo">
