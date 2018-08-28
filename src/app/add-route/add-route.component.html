@@ -3,37 +3,35 @@
   <br>
   <div class="form-group">
     <label for="routeName">Route name:</label>
-    <input type="text" minlength="3" maxlength="40" class="form-control" name="routeName" placeholder="Add the route name" required autofocus>
+    <input type="text" minlength="3" maxlength="40" class="form-control" name="routeName" placeholder="Add the route name" required autofocus [(ngModel)]="newRoute.name">
   </div>
   <div class="form-group">
     <label for="routeGrade">Route grade:</label>
-    <select class="form-control" name="routeGrade" required>
+    <select class="form-control" name="routeGrade" required [(ngModel)]="newRoute.grade">
       <option value="" disabled>Select route grade</option>
       <option *ngFor="let grade of grades">{{grade}}</option>
     </select>
   </div>
   <div class="form-group">
     <label for="routeGym">Gym:</label>
-    <select class="form-control" name="routeGym" #routeGym required (change)="addGymSection(routeGym.value)">
+    <select class="form-control" name="routeGym" #routeGym required (change)="addGymSection(routeGym.value)" [(ngModel)]="newRoute.gym.id">
       <option value="" disabled>Select the gym</option>
-      <option>Extreme, Banja Luka</option>
-      <option>Sokolski dom, Banja Luka</option>
-      <option>Granit, Belgrade</option>
-      <option>+ Add new gym</option>
+      <option *ngFor="let gym of gyms" value="{{gym.id}}">{{gym.name}}, {{gym.city}}</option>
+      <option value="null">+ Add new gym</option>
     </select>
   </div>
   <div *ngIf="showAddGymFields">
     <div class="form-group">
       <label for="gymName">Gym name:</label>
-      <input type="text" minlength="3" maxlength="40" class="form-control" name="gymName" placeholder="Add the gym name" required>
+      <input type="text" minlength="3" maxlength="40" class="form-control" name="gymName" #gymName placeholder="Add the gym name" required [(ngModel)]="newRoute.gym.name">
     </div>
     <div class="form-group">
       <label for="gymCity">Gym city:</label>
-      <input type="text" minlength="3" maxlength="30" class="form-control" name="gymCity" placeholder="Add the gym city" required>
+      <input type="text" minlength="3" maxlength="30" class="form-control" name="gymCity" placeholder="Add the gym city" required [(ngModel)]="newRoute.gym.city">
     </div>
     <div class="form-group">
       <label for="gymCountry">Gym country:</label>
-      <select class="form-control" name="gymCountry" required>
+      <select class="form-control" name="gymCountry" required [(ngModel)]="newRoute.gym.country">
         <option value="" disabled>Add the gym country</option>
         <option *ngFor="let country of countries">{{country.name}}</option>
       </select>
@@ -41,7 +39,7 @@
   </div>
   <div class="form-group">
     <label for="routeDescription">Route description (optional):</label>
-    <input type="text" minlength="3" maxlength="300" class="form-control" name="routeDescription" placeholder="Add the route description">
+    <input type="text" minlength="3" maxlength="300" class="form-control" name="routeDescription" placeholder="Add the route description" [(ngModel)]="newRoute.description">
   </div>
   <div class="form-group">
     <label for="routePhoto">Route photo:</label>
@@ -54,5 +52,7 @@
 <br>
 <div class="container">
   <h5>Preview</h5>
-  <img [src]="routePhotoPath.path">
+  <img [src]="newRoute.photo">
 </div>
+<p>{{diagnostic()}}</p>
+

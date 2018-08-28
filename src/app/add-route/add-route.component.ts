@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RouteService } from '../route.service';
+import { Route } from '../../route';
 
 
 @Component({
@@ -258,11 +259,27 @@ export class AddRouteComponent implements OnInit {
     { name: 'Zambia', code: 'ZM' },
     { name: 'Zimbabwe', code: 'ZW' }
   ]
+  gyms: {id: number, name: string, city: string}[] = [{id: 1, name: "Extreme", city: "Banja Luka"}, {id: 2, name: "Sokolski", city: "Banja Luka"}, {id: 3, name: "Granit", city: "Beograd"}, ]
   showAddGymFields: boolean = false;
-  routePhotoPath: { path: string } = { path: "" };
-
+  
+  newRoute: Route = {
+    name: "",
+    grade: "",
+    description: "",
+    photo: null,
+    gym: {
+        id: null,
+        name: "",
+        city: "",
+        country: ""
+    }
+  };
+  
+  
   constructor(private sanitizer: DomSanitizer, private routeService: RouteService) {
   }
+  // TODO: Remove this when we're done
+  diagnostic() { return JSON.stringify(this.newRoute)} 
 
   ngOnInit() {
     this.addRoute();
@@ -270,25 +287,16 @@ export class AddRouteComponent implements OnInit {
 
   addRoute(): void {
     this.routeService.addRoute().subscribe(jsonObj => console.log(jsonObj.test));
+
   }
 
   // Loading of additional fields in case user select Add new gym
   addGymSection(selectedRouteGym): void {
-    if (selectedRouteGym == "+ Add new gym") {
+    if (selectedRouteGym == "null") {
       this.showAddGymFields = true;
     } else {
       this.showAddGymFields = false;
     }
-  }
-
-  // Converting dataURItoBlob
-  dataURItoBlob(dataURI) {
-    var binary = atob(dataURI.split(',')[1]);
-    var array = [];
-    for (var i = 0; i < binary.length; i++) {
-      array.push(binary.charCodeAt(i));
-    }
-    return new Blob([new Uint8Array(array)], { type: 'image/jpeg' });
   }
 
   // Checking if the selected file has image extension and calling reader
@@ -304,13 +312,11 @@ export class AddRouteComponent implements OnInit {
 
   // Reading file and calling photo processor
   readFile(file): void {
-    let _routePhotoPath = this.routePhotoPath;
     let _processFile = this.processFile;
-    let _sanitizer = this.sanitizer;
-    let _dataURItoBlob = this.dataURItoBlob;
+    let _newRoute = this.newRoute;
     let reader = new FileReader();
     reader.onloadend = function () {
-      _processFile(reader.result, file.type, _routePhotoPath, _dataURItoBlob, _sanitizer);
+      _processFile(reader.result, file.type, _newRoute);
     }
     reader.onerror = function () {
       alert('There was an error reading the file!');
@@ -319,7 +325,7 @@ export class AddRouteComponent implements OnInit {
   }
 
   // Resizing image and updating photoRoutePath 
-  processFile(dataURL, fileType, routePhotoPath, dataURItoBlob, sanitizer) {
+  processFile(dataURL, fileType, newRoute) {
     var maxWidth = 800;
     var maxHeight = 800;
     var image = new Image();
@@ -331,8 +337,7 @@ export class AddRouteComponent implements OnInit {
       var shouldResize = (width > maxWidth) || (height > maxHeight);
 
       if (!shouldResize) {
-        let myBlob = dataURItoBlob(dataURL);
-        routePhotoPath.path = sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(myBlob))
+        newRoute.photo = dataURL;
         return;
       }
 
@@ -358,10 +363,8 @@ export class AddRouteComponent implements OnInit {
 
       dataURL = canvas.toDataURL(fileType);
 
-      let myBlob = dataURItoBlob(dataURL);
+      newRoute.photo = dataURL;
 
-      routePhotoPath.path = sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(myBlob));
-      //sendFile(dataURL);
     };
 
     image.onerror = function () {
