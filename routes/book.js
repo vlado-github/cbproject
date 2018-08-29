@@ -13,24 +13,13 @@ router.get('/getGyms', function(req, res, next) {
     res.send([{id: 1, name: "Extreme", city: "Banja Luka"},{id: 2, name: "Sokolski dom", city: "Banja Luka"},{id: 3, name: "Granit", city: "Beograd"}]);
     res.send(getGyms())
 });
-router.post('/addRoute', function(req, res) {
-    res.status(200).json(req.body);
-    //res.send("Sacuvana ruta");
-});
 
-
-<<<<<<< HEAD
 // TODO: Method should retrun message in JSON if the route is succesfully recorded
 router.post('/addRoute', function(req, res) {
     res.status(200).json(req.body);
-    //res.send("Sacuvana ruta");
 });
 
-
 // OLD CODE for adding a climbing route 
-=======
-// Route for adding a climbing route 
->>>>>>> 0fd206f5f5409de98dd9b7f6160f8cceb5df3137
 router.post('/addRouteOLD', function(req, res) {
   var today = new Date();
   var appData = {
