@@ -2,7 +2,7 @@
 -- ROUTES TABELA 
 CREATE TABLE `routes` (
   `routeID` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `grade` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `photo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
