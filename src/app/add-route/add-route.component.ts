@@ -259,7 +259,7 @@ export class AddRouteComponent implements OnInit {
     { name: 'Zambia', code: 'ZM' },
     { name: 'Zimbabwe', code: 'ZW' }
   ]
-  gyms: {id: number, name: string, city: string}[] = [{id: 1, name: "Extreme", city: "Banja Luka"}, {id: 2, name: "Sokolski", city: "Banja Luka"}, {id: 3, name: "Granit", city: "Beograd"}, ]
+  gyms: {id: number, name: string, city: string}[];
   showAddGymFields: boolean = false;
   routePhotoFake;
 
@@ -286,7 +286,12 @@ export class AddRouteComponent implements OnInit {
   diagnostic() { return JSON.stringify(this.newRoute)} 
 
   ngOnInit() {
+    this.getGyms();
     this.addRoute();
+  }
+
+  getGyms(): void {
+    this.routeService.getGyms().subscribe(gyms => this.gyms = gyms);
   }
 
   addRoute(): void {

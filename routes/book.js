@@ -8,7 +8,10 @@ router.get('/', function(req, res, next) {
   res.send("API home page");
 //   res.send({"test":"API home page"});
 });
-
+// TODO: This method should return array of gym object in bellow format
+router.get('/getGyms', function(req, res, next) {
+    res.send([{id: 1, name: "Extreme", city: "Banja Luka"},{id: 2, name: "Sokolski dom", city: "Banja Luka"},{id: 3, name: "Granit", city: "Beograd"}]);
+});
 
 // Route for adding a climbing route 
 router.post('/addRoute', function(req, res) {

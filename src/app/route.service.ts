@@ -15,6 +15,7 @@ export class RouteService {
   
   
   addRouteUrl = '/api'
+  getGymsUrl = '/api/getGyms'
   
   //////// Save methods //////////
  
@@ -30,6 +31,13 @@ export class RouteService {
   //     catchError(this.handleError('addRoute', 'any'))
   //   );
   // }
+
+  getGyms(): Observable<any> {
+    return this.http.get<any>(this.getGymsUrl).pipe(
+      catchError(this.handleError('getGyms', 'any'))
+    );
+  }
+  
   constructor(private http: HttpClient) { }
 
   
