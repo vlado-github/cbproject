@@ -3,18 +3,26 @@ var database = require('../server/database');
 var router = express.Router();
 
 
-// Api home page
+// API root
 router.get('/', function(req, res, next) {
-  res.send("API home page");
-//   res.send({"test":"API home page"});
+  res.send("API root");
 });
+
 // TODO: This method should return array of gym object in bellow format
 router.get('/getGyms', function(req, res, next) {
     res.send([{id: 1, name: "Extreme", city: "Banja Luka"},{id: 2, name: "Sokolski dom", city: "Banja Luka"},{id: 3, name: "Granit", city: "Beograd"}]);
+    res.send(getGyms())
 });
 
-// Route for adding a climbing route 
+// TODO: Method should retrun message in JSON if the route is succesfully recorded
 router.post('/addRoute', function(req, res) {
+    res.status(200).json(req.body);
+    //res.send("Sacuvana ruta");
+});
+
+
+// OLD CODE for adding a climbing route 
+router.post('/addRouteOLD', function(req, res) {
   var today = new Date();
   var appData = {
       "error": 1,

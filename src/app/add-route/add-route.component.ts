@@ -278,25 +278,26 @@ export class AddRouteComponent implements OnInit {
   
   submitted = false;
 
-  onSubmit() { this.submitted = true; }
+  onSubmit() { 
+    this.addRoute(this.newRoute);
+    this.submitted = true; 
+  }
 
-  constructor(private sanitizer: DomSanitizer, private routeService: RouteService) {
+  constructor(private routeService: RouteService) {
   }
   // TODO: Remove this when we're done
   diagnostic() { return JSON.stringify(this.newRoute)} 
 
   ngOnInit() {
     this.getGyms();
-    this.addRoute();
   }
 
   getGyms(): void {
     this.routeService.getGyms().subscribe(gyms => this.gyms = gyms);
   }
 
-  addRoute(): void {
-    this.routeService.addRoute().subscribe(jsonObj => console.log(jsonObj.test));
-
+  addRoute(newRoute): void {
+    this.routeService.addRoute(newRoute).subscribe(jsonObj => console.log("Odgovor servera na addRoute" + JSON.stringify(jsonObj)));
   }
 
   // Loading of additional fields in case user select Add new gym
