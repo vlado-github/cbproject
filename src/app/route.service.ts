@@ -14,23 +14,18 @@ const httpOptions = {
 export class RouteService {
   
   
-  addRouteUrl = '/api'
+  addRouteUrl = '/api/addRoute'
   getGymsUrl = '/api/getGyms'
-  
-  //////// Save methods //////////
- 
-  /** POST: add a new route to the server */
-  addRoute(): Observable<any> {
-    return this.http.get<any>(this.addRouteUrl).pipe(
-      catchError(this.handleError('addRoute', 'any'))
+   
+  // Adds a new route to the server
+  addRoute(newRoute): Observable<any> {
+    return this.http.post<any>(this.addRouteUrl, newRoute, httpOptions)
+    .pipe(
+      catchError(this.handleError<any>('addRoute'))
     );
   }
 
-  // addRoute(): Observable<any> {
-  //   return this.http.get<any>(this.addRouteUrl).pipe(
-  //     catchError(this.handleError('addRoute', 'any'))
-  //   );
-  // }
+  // Gets all gyms from the server
 
   getGyms(): Observable<any> {
     return this.http.get<any>(this.getGymsUrl).pipe(
