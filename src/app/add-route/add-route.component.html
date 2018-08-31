@@ -1,9 +1,8 @@
-<!-- KOristiti ovdje HTTP requests od Angualra umejsto action method varijante -->
 <form class="container" #addRouteForm="ngForm" (ngSubmit)="onSubmit()">
   <br>
   <div class="form-group">
     <label for="routeName">Route name:</label>
-    <input type="text" minlength="3" maxlength="40" class="form-control" name="routeName" placeholder="Add the route name" required autofocus [(ngModel)]="newRoute.name" #routeName="ngModel">
+    <input type="text" minlength="3" maxlength="40" class="form-control" name="routeName" placeholder="Add the route name" required [(ngModel)]="newRoute.name" #routeName="ngModel">
   </div>
   <div *ngIf="routeName.invalid && (routeName.dirty || routeName.touched)" class="alert alert-danger">
     <div *ngIf="routeName.errors.required">
@@ -78,7 +77,6 @@
 <p>{{photoTemp}}</p>
 <div class="container">
   <h5>Preview</h5>
-  <img [src]="newRoute.photo">
+  <img [hidden]="newRoute.photo == null"[src]="newRoute.photo">
 </div>
-<p>{{diagnostic()}}</p>
-
+<p>{{diagnostic()}}</p>z

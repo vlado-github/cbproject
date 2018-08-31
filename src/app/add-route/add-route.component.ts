@@ -297,6 +297,7 @@ export class AddRouteComponent implements OnInit {
   }
 
   addRoute(newRoute): void {
+    // tu hedlati success response
     this.routeService.addRoute(newRoute).subscribe(jsonObj => console.log("Odgovor servera na addRoute" + JSON.stringify(jsonObj)));
   }
 
