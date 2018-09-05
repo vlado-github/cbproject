@@ -1,0 +1,26 @@
+
+/* hide the blue outline */
+.form-control:focus {
+    outline: 0 !important;
+    border-color: initial;
+    box-shadow: none;
+}
+/* setting up toggler to look the same as image on large screen */
+.navbar-toggler {
+    padding: 5px 0px 5px 0px;
+    font-size: 17px;
+}
+
+.navbar {
+    justify-content: unset;
+}
+
+.navbar-brand {
+    font-size: 0rem;
+    margin-right: 24px;
+}
+
+.angle {
+    margin-left: 6px;
+    margin-right:7px;
+}

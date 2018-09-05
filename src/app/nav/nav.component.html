@@ -1,26 +1,44 @@
-<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-    <a routerLink="/homepage" class="navbar-brand" href="#">
+<nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light">
+    <!-- Hidden on small screen devices -->
+    <a routerLink="/homepage" class="navbar-brand d-none d-sm-block" href="#">
         <img src="../assets/logo.png" width="30" height="30" alt="">
     </a>
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Find the gym" aria-label="Search">
-        <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+    <!-- Toggler on small screen device -->
+    <div class="navbar-toggler border-0 bg-transparent"data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation"
+        (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" >
+        <div class="d-inline">
+                <img class="" src="../assets/logo.png" width="30" height="30" alt="">
+        </div>
+        <div *ngIf="isCollapsed" class="d-inline angle"><i class="fa fa-angle-down"></i></div>
+        <div *ngIf="!isCollapsed" class="d-inline angle"><i class="fa fa-angle-up"></i></div>
+    </div>
+    <!-- Search form -->
+    <form class="form-inline float-left">
+        <div class="input-group">
+            <span class="input-group-prepend">
+                <div class="input-group-text bg-white border"><i class="fa fa-search"></i></div>
+            </span>    
+            <input class="form-control py-2 border-left-0 border " type="search" placeholder="Find the gym or route" aria-label="Search">
+        </div>
     </form>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation"
+        (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed">
         <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    </button> -->
+    <div class="collapse navbar-collapse" id="navbarNav" [ngbCollapse]="isCollapsed">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/addroute">Add route</a>
+            <li class="nav-item d-block d-sm-none">
+                <a class="nav-link" routerLink="/homepage" (click)="isCollapsed = true">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Sign up</a>
+                <a class="nav-link" routerLink="/addroute" (click)="isCollapsed = true">Add route</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Log in</a>
+                <a class="nav-link" href="#" (click)="isCollapsed = true">Sign up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" (click)="isCollapsed = true">Log in</a>
             </li>
         </ul>
     </div>
-
 </nav>
