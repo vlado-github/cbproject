@@ -15,6 +15,7 @@ export class RouteService {
   
   
   addRouteUrl = '/api/addRoute'
+  getGymsListUrl = '/api/getGymsList'
   getGymsUrl = '/api/getGyms'
    
   // Adds a new route to the server
@@ -25,13 +26,21 @@ export class RouteService {
     );
   }
 
-  // Gets all gyms from the server
+  // Gets list gyms from the server ready to be shown in options
 
+  getGymsList(): Observable<any> {
+    return this.http.get<any>(this.getGymsListUrl).pipe(
+      catchError(this.handleError('getGymsList', 'any'))
+    );
+  }
+
+  //gets a list of gyms from server with photos
   getGyms(): Observable<any> {
     return this.http.get<any>(this.getGymsUrl).pipe(
       catchError(this.handleError('getGyms', 'any'))
     );
   }
+
   
   constructor(private http: HttpClient) { }
 

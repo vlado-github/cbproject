@@ -8,5 +8,6 @@ export class Route {
         name: string;
         city: string;
         country: string;
+        photo: Blob;
     };
 }

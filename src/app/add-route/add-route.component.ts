@@ -262,6 +262,7 @@ export class AddRouteComponent implements OnInit {
   gyms: {id: number, name: string, city: string}[];
   showAddGymFields: boolean = false;
   routePhotoFake;
+  gymPhotoFake;
 
   newRoute: Route = {
     name: "",
@@ -272,7 +273,8 @@ export class AddRouteComponent implements OnInit {
         id: null,
         name: "",
         city: "",
-        country: ""
+        country: "",
+        photo: null,
     }
   };
   
@@ -289,11 +291,11 @@ export class AddRouteComponent implements OnInit {
   diagnostic() { return JSON.stringify(this.newRoute)} 
 
   ngOnInit() {
-    this.getGyms();
+    this.getGymsList();
   }
 
-  getGyms(): void {
-    this.routeService.getGyms().subscribe(gyms => this.gyms = gyms);
+  getGymsList(): void {
+    this.routeService.getGymsList().subscribe(gyms => this.gyms = gyms);
   }
 
   addRoute(newRoute): void {
@@ -311,23 +313,25 @@ export class AddRouteComponent implements OnInit {
   }
 
   // Checking if the selected file has image extension and calling reader
-  fileCheck(file): void {
+  fileCheck(file,isRoutePhoto): any {
     if (file) {
       if (/^image\//i.test(file.type)) {
-        this.readFile(file);
+        this.readFile(file,isRoutePhoto);
       } else {
         alert('Not a valid image file!');
       }
     }
   }
 
+
   // Reading file and calling photo processor
-  readFile(file): void {
+  readFile(file,isRoutePhoto): any {
     let _processFile = this.processFile;
     let _newRoute = this.newRoute;
     let reader = new FileReader();
-    reader.onloadend = function () {
-      _processFile(reader.result, file.type, _newRoute);
+    
+    reader.onload = function () {
+      _processFile(reader.result, file.type, isRoutePhoto, _newRoute);
     }
     reader.onerror = function () {
       alert('There was an error reading the file!');
@@ -335,20 +339,22 @@ export class AddRouteComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  // Resizing image and updating photoRoutePath 
-  processFile(dataURL, fileType, newRoute) {
+  // Resizing image 
+  processFile(dataURL, fileType, isRoutePhoto,newRoute) {
+  
     var maxWidth = 800;
     var maxHeight = 800;
     var image = new Image();
     image.src = dataURL;
-
+    
     image.onload = function () {
+      var path;
       var width = image.width;
       var height = image.height;
       var shouldResize = (width > maxWidth) || (height > maxHeight);
-
+      
       if (!shouldResize) {
-        newRoute.photo = dataURL;
+        isRoutePhoto ? newRoute.photo = dataURL : newRoute.gym.photo = dataURL;
         return;
       }
 
@@ -373,8 +379,8 @@ export class AddRouteComponent implements OnInit {
       context.drawImage(image, 0, 0, newWidth, newHeight);
 
       dataURL = canvas.toDataURL(fileType);
-
-      newRoute.photo = dataURL;
+     
+      isRoutePhoto ? newRoute.photo = dataURL : newRoute.gym.photo = dataURL;
 
     };
 

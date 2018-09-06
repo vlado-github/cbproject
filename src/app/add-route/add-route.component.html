@@ -59,6 +59,10 @@
         <option *ngFor="let country of countries">{{country.name}}</option>
       </select>
     </div>
+    <div class="form-group">
+        <label for="gymPhoto">Gym photo:</label>
+        <input type="file" class="form-control-file" #gymPhotoFakeRef="ngModel" #gymPhoto name="gymPhoto" accept="image/*" required (change)="fileCheck(gymPhoto.files[0],false);" [(ngModel)]="gymPhotoFake">
+      </div>
   </div>
   <div class="form-group">
     <label for="routeDescription">Route description (optional):</label>
@@ -67,7 +71,7 @@
   
   <div class="form-group">
     <label for="routePhoto">Route photo:</label>
-    <input type="file" class="form-control-file" #routePhotoFakeRef="ngModel" #routePhoto name="routePhoto" accept="image/*" required (change)="fileCheck(routePhoto.files[0]);" [(ngModel)]="routePhotoFake">
+    <input type="file" class="form-control-file" #routePhotoFakeRef="ngModel" #routePhoto name="routePhoto" accept="image/*" required (change)="fileCheck(routePhoto.files[0], true);" [(ngModel)]="routePhotoFake">
   </div>
   <button type="submit" class="btn btn-primary btn-info" [disabled]="!addRouteForm.form.valid">Add route</button>
 </form>
@@ -76,7 +80,9 @@
 <br>
 <p>{{photoTemp}}</p>
 <div class="container">
-  <h5>Preview</h5>
-  <img [hidden]="newRoute.photo == null"[src]="newRoute.photo">
+  <h5>Preview route</h5>
+  <img [hidden]="newRoute.photo == null" [src]="newRoute.photo" class="img-responsive">
+  <h5>Preview gym</h5>
+  <img [hidden]="newRoute.gym.photo == null" [src]="newRoute.gym.photo" class="img-responsive">
 </div>
-<p>{{diagnostic()}}</p>z
+<p>{{diagnostic()}}</p>
