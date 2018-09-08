@@ -11,6 +11,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { HeaderComponent } from './homepage/header/header.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { GymsComponent } from './homepage/gyms/gyms.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     NavComponent,
     AddRouteComponent,
     HomepageComponent,
-    HeaderComponent
+    HeaderComponent,
+    GymsComponent
   ],
   imports: [
     BrowserModule,

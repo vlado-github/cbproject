@@ -26,7 +26,7 @@ export class RouteService {
     );
   }
 
-  // Gets list gyms from the server ready to be shown in options
+  // Gets list of all gyms (without photos) from the server 
 
   getGymsList(): Observable<any> {
     return this.http.get<any>(this.getGymsListUrl).pipe(
@@ -34,7 +34,7 @@ export class RouteService {
     );
   }
 
-  //gets a list of gyms from server with photos
+  //gets a list of gyms with photos from server 
   getGyms(): Observable<any> {
     return this.http.get<any>(this.getGymsUrl).pipe(
       catchError(this.handleError('getGyms', 'any'))
