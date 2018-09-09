@@ -5,8 +5,10 @@
   <br>
   <div class="row">
     <div class="col-6 col-md-4 col-lg-3 col-xl-2" *ngFor="let gym of gyms">
-      <a href="#">
-        <img class="rounded item" src="{{gym.photo}}" alt="{{gym.name}}">
+      <a routerLink="/gym/{{gym.id}}">
+        <div class="image-holder">
+            <img class="image" src="{{gym.photo}}" alt="{{gym.name}}">
+        </div>
         <p class="title">{{gym.name}}, {{gym.city}}</p>
       </a>
     </div>

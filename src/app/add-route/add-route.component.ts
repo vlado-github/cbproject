@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { RouteService } from '../route.service';
+import { GymService } from '../gym.service';
+
 import { Route } from '../../route';
 
 
@@ -285,7 +286,8 @@ export class AddRouteComponent implements OnInit {
     this.submitted = true; 
   }
 
-  constructor(private routeService: RouteService) {
+  constructor(private routeService: RouteService,
+    private gymService: GymService) {
   }
   // TODO: Remove this when we're done
   diagnostic() { return JSON.stringify(this.newRoute)} 
@@ -295,7 +297,7 @@ export class AddRouteComponent implements OnInit {
   }
 
   getGymsList(): void {
-    this.routeService.getGymsList().subscribe(gyms => this.gyms = gyms);
+    this.gymService.getGymsList().subscribe(gyms => this.gyms = gyms);
   }
 
   addRoute(newRoute): void {

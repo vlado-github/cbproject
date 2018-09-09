@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteService } from '../../route.service';
+import { GymService } from '../../gym.service';
 
 
 @Component({
@@ -11,14 +11,16 @@ export class GymsComponent implements OnInit {
 
   gyms: {id: number, name: string, city: string, countyr: string, photo: Blob}[];
 
-  constructor(private routeService: RouteService) { }
+  constructor(private gymService: GymService) { }
+
+ 
 
   ngOnInit() {
     this.getGyms();
   }
 
   getGyms(): void {
-    this.routeService.getGyms().subscribe(gyms => this.gyms = gyms);
+    this.gymService.getGyms().subscribe(gyms => this.gyms = gyms);
   }
 
 }

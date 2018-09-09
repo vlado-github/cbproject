@@ -1,0 +1,7 @@
+<div *ngIf="gym" class="jumbotron jumbotron-fluid" [style.background-image]="sanitizeImage(gym.photo)">
+    <div class="container-fluid">
+      <h1 class="display-4">{{gym.name}}</h1>
+      <p class="lead">{{gym.city}}, {{gym.country}}</p>
+    </div>
+  </div>
+  

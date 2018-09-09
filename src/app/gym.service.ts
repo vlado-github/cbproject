@@ -10,27 +10,34 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
+export class GymService {
 
-export class RouteService {
-  
-  
-  addRouteUrl = '/api/addRoute'
-  
-   
-  // Adds a new route to the server
-  addRoute(newRoute): Observable<any> {
-    return this.http.post<any>(this.addRouteUrl, newRoute, httpOptions)
-    .pipe(
-      catchError(this.handleError<any>('addRoute'))
+  getGymsListUrl = '/api/getGymsList'
+  getGymsUrl = '/api/getGyms'
+  getGymUrl = '/api/getGym'
+
+  getGymsList(): Observable<any> {
+    return this.http.get<any>(this.getGymsListUrl).pipe(
+      catchError(this.handleError('getGymsList', 'any'))
     );
   }
 
+  //gets a list of gyms with photos from server 
+  getGyms(): Observable<any> {
+    return this.http.get<any>(this.getGymsUrl).pipe(
+      catchError(this.handleError('getGyms', 'any'))
+    );
+  }
 
+  //gets a specific gym by ID from server 
+  getGym(id: number): Observable<any> {
+    console.log(this.getGymUrl + "/:" + id)
+    return this.http.get<any>(this.getGymUrl + "/" + id).pipe(
+      catchError(this.handleError('getGym', 'any'))
+    );
+  }
   
   constructor(private http: HttpClient) { }
-
-  
-
 
   // Handle Http operation that failed.
   // Let the app continue.
