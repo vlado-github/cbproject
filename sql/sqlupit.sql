@@ -1,4 +1,9 @@
--- JOS RIJESITI PHOTO ZBO BASE64
+-- pass nema ''
+-- username 'root'
+
+-- KREIRANJE BAZE cbproject
+CREATE DATABASE cbproject;
+
 -- ROUTES TABELA 
 CREATE TABLE `routes` (
   `routeID` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,

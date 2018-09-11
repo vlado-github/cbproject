@@ -5,7 +5,7 @@ var connection = mysql.createPool({
     host:'localhost',
     user:'root',
     password:'',
-    database:'devesh',
+    database:'cbproject', //izmjena iz devish u cbproject (naziv baze)
     port: 3306,
     debug: false,
     multipleStatements: true
