@@ -107,18 +107,29 @@ const Routes = sequelize.define('routes', {
   } 
 });
 
-sequelize.sync()
-  .then(() => Routes.create({
-    routeID: 1,
-    name:'Mocna ruta',
-    grade:'7a+',
-    description:'Prva ruta, najjaca ruta!',
-    photo:'ruta.jpg',
-    gymID: 1,
-    created: new Date(2018, 11, 9)
-  }))
-  .then(jane => {
-    console.log(jane.toJSON());
-  });
+// UPIS U TABELU
+
+// sequelize.sync()
+//   .then(() => Routes.create({
+//     routeID: 1,
+//     name:'Mocna ruta',
+//     grade:'7a+',
+//     description:'Prva ruta, najjaca ruta!',
+//     photo:'ruta.jpg',
+//     gymID: 1,
+//     created: new Date(2018, 11, 9)
+//   }))
+//   .then(jane => {
+//     console.log(jane.toJSON());
+//   });
+
+// ČITANJE IZ TABELE
+
+// sequelize
+// .query('SELECT * FROM Routes', { raw: true })
+// .then(Routes => {
+//   console.log(Routes)
+// })
+
 
 
