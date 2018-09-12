@@ -1,5 +1,6 @@
+import { upisiTest} from 'dal/repositories/routeRepository';
+
 var express = require('express');
-var Sequelize = require('sequelize');
 var router = express.Router();
 
 // to be deleted after testing
@@ -37,99 +38,9 @@ router.post('/addRoute', function(req, res) {
     res.status(200).json(req.body);
 });
 
-// OLD CODE for adding a climbing route 
-  router.post('/addRouteOLD', function(req, res) {
-  var today = new Date();
-  var appData = {
-      "error": 1,
-      "data": ""
-  };
-  var routeData = {
-      "routeName": req.body.routeName,
-      "routeGrade": req.body.routeGrade,
-      "routeGym": req.body.routeGym,
-      "routePhoto": req.body.routePhoto,
-      "created": today
-  }
 
-  database.connection.getConnection(function(err, connection) {
-      if (err) {
-          appData["error"] = 1;
-          appData["data"] = "Internal Server Error";
-          res.status(500).json(appData);
-      } else {
-          connection.query('INSERT INTO routes SET ?', routeData, function(err, rows, fields) {
-              if (!err) {
-                  appData.error = 0;
-                  appData["data"] = "Route successfully added!";
-                  res.status(201).json(appData);
-              } else {
-                  appData["data"] = "Error Occured!";
-                  res.status(400).json(appData);
-              }
-          });
-          connection.release();
-      }
-  });
-});
-
+///testiramo
+upisiTest();
 module.exports = router;
-
-
-
-// Sequelize 
-
-var sequelize = new Sequelize('cbproject', 'root', '', {
-    dialect: 'mysql'
-  });
-
-const Routes = sequelize.define('routes', {
-  routeID: {
-    type: Sequelize.INTEGER
-  },
-  name: {
-    type: Sequelize.STRING
-  },
-  grade: {
-    type: Sequelize.STRING
-  },
-  description: {
-    type: Sequelize.STRING
-  },
-  photo: {
-    type: Sequelize.STRING
-  },
-  gymID: {
-    type: Sequelize.INTEGER
-  },
-  created: {
-    type: Sequelize.DATE
-  } 
-});
-
-// UPIS U TABELU
-
-// sequelize.sync()
-//   .then(() => Routes.create({
-//     routeID: 1,
-//     name:'Mocna ruta',
-//     grade:'7a+',
-//     description:'Prva ruta, najjaca ruta!',
-//     photo:'ruta.jpg',
-//     gymID: 1,
-//     created: new Date(2018, 11, 9)
-//   }))
-//   .then(jane => {
-//     console.log(jane.toJSON());
-//   });
-
-// ČITANJE IZ TABELE
-
-// sequelize
-// .query('SELECT * FROM Routes', { raw: true })
-// .then(Routes => {
-//   console.log(Routes)
-// })
-
 
 

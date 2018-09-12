@@ -5,9 +5,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cors = require('cors');
 var bodyParser = require("body-parser");
-var Sequelize = require('sequelize');
 
-var apiRouter = require('./routes/controller');
+var apiRouter = require('./server/api');
 
 var app = express();
 

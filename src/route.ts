@@ -1,5 +1,5 @@
 export class Route {
-    public name: string;
+    name: string;
     grade: string;
     description: string;
     photo: Blob;

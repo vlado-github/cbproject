@@ -6,7 +6,7 @@ CREATE DATABASE cbproject;
 
 -- ROUTES TABELA 
 CREATE TABLE `routes` (
-  `routeID` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `grade` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
