@@ -1,8 +1,9 @@
 
+// Route entity
+
 var sequelize = require('../dbcontext');
 var Sequelize = require('sequelize');
 
-// Route entity
 const Route = sequelize.define('routes', {
   name: {
     type: Sequelize.STRING
@@ -19,11 +20,7 @@ const Route = sequelize.define('routes', {
   gymID: {
     type: Sequelize.INTEGER
   },
-  created: {
-    type: Sequelize.DATE
-  }
-}
-);
+});
 
 
 module.exports = Route;  

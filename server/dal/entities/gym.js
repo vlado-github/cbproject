@@ -1,6 +1,7 @@
-var sequelize = require('../dbcontext');
+
 //Gym entity
 
+var sequelize = require('../dbcontext');
 var Sequelize = require('sequelize');
 
 const Gym = sequelize.define('gyms', {
@@ -19,4 +20,4 @@ const Gym = sequelize.define('gyms', {
 });
 
 
-module.exports = Gym;  
+module.exports = Gym;

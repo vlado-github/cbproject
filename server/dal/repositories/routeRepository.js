@@ -36,12 +36,3 @@ let upisiTest2 = sequelize.sync()
 //    test() { console.log("TEST USPJESAN!") }
 //  };
 
-
-
-// ČITANJE IZ TABELE
-
-// sequelize
-// .query('SELECT * FROM Routes', { raw: true })
-// .then(Routes => {
-//   console.log(Routes)
-// })
