@@ -1,10 +1,14 @@
-// Database connection
 
+// insert Sequelize
 var Sequelize = require('sequelize');
 
 
 // Database connection 
 
-export var sequelize = new Sequelize('cbproject', 'root', '', {
-    dialect: 'mysql'
-  });
+var sequelize = new Sequelize('cbproject', 'root', '', {
+  dialect: 'mysql'
+});
+
+
+module.exports = sequelize;
+
