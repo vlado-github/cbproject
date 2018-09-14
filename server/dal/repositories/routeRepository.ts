@@ -1,7 +1,7 @@
 //t
-var sequelize = require('../dbcontext');
-var Route = require('../entities/route');
-var Gym = require('../entities/gym');
+var sequelize = require('../dbcontext.ts');
+var Route = require('../entities/route.ts');
+var Gym = require('../entities/gym.ts');
 
 
 // Upis i pravljenje tabele route
@@ -19,7 +19,7 @@ let upisiTest = sequelize.sync()
   });
 
 
-//t
+
 let upisiTest2 = sequelize.sync()
   .then(() => Gym.create({
     name: 'New gym',

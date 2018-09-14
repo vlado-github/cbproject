@@ -1,6 +1,6 @@
 //t
 
-var routeRepository = require('./dal/repositories/routeRepository.js')
+var routeRepository = require('./dal/repositories/routeRepository.ts')
 
 var express = require('express');
 var router = express.Router();

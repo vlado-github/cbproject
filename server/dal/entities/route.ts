@@ -1,10 +1,10 @@
 
 // Route entity
 
-var sequelize = require('../dbcontext');
+var sequelize = require('../dbcontext.ts');
 var Sequelize = require('sequelize');
 
-const Route = sequelize.define('routes', {
+var Route = sequelize.define('routes', {
   name: {
     type: Sequelize.STRING
   },

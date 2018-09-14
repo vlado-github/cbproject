@@ -3,7 +3,7 @@
 
 var Sequelize = require('sequelize');
 
-const sequelize = new Sequelize({
+var sequelize = new Sequelize({
   database: 'cbproject',
   username: 'root',
   password: null,

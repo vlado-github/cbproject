@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cors = require('cors');
 var bodyParser = require("body-parser");
 
-var apiRouter = require('./server/api');
+var apiRouter = require('./server/api.ts');
 
 var app = express();
 

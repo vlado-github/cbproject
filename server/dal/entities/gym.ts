@@ -1,10 +1,10 @@
 
 //Gym entity
 
-var sequelize = require('../dbcontext');
+var sequelize = require('../dbcontext.ts');
 var Sequelize = require('sequelize');
 
-const Gym = sequelize.define('gyms', {
+var Gym = sequelize.define('gyms', {
   name: {
     type: Sequelize.STRING
   },
@@ -18,6 +18,7 @@ const Gym = sequelize.define('gyms', {
     type: Sequelize.STRING
   }
 });
+
 
 
 module.exports = Gym;
