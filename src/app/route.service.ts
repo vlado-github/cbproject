@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { Route } from './entities/route'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -12,20 +13,17 @@ const httpOptions = {
 })
 
 export class RouteService {
-  
-  
+
   addRouteUrl = '/api/addRoute'
   
    
   // Adds a new route to the server
-  addRoute(newRoute): Observable<any> {
+  addRoute(newRoute: Route): Observable<any> {
     return this.http.post<any>(this.addRouteUrl, newRoute, httpOptions)
     .pipe(
       catchError(this.handleError<any>('addRoute'))
     );
   }
-
-
   
   constructor(private http: HttpClient) { }
 

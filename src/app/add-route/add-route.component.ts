@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouteService } from '../route.service';
 import { GymService } from '../gym.service';
 
-import { Route } from '../../route';
+import { Route } from '../entities/route';
 
 
 @Component({
@@ -265,19 +265,8 @@ export class AddRouteComponent implements OnInit {
   routePhotoFake;
   gymPhotoFake;
 
-  newRoute: Route = {
-    name: "",
-    grade: "",
-    description: "",
-    photo: null,
-    gym: {
-        id: null,
-        name: "",
-        city: "",
-        country: "",
-        photo: null,
-    }
-  };
+  newRoute = new Route();
+  
   
   submitted = false;
 
