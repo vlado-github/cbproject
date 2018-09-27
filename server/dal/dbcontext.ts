@@ -1,9 +1,7 @@
-
-// Database connection
-
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize({
+//database connection
+export var sequelize = new Sequelize({
   database: 'cbproject',
   username: 'root',
   password: null,
@@ -16,8 +14,3 @@ var sequelize = new Sequelize({
     idle: 10000
   }
 });
-
-module.exports = sequelize;
-
-
-// Finished

@@ -1,6 +1,7 @@
-//t
+
 
 var routeRepository = require('./dal/repositories/routeRepository.ts')
+
 
 var express = require('express');
 var router = express.Router();
@@ -39,10 +40,6 @@ router.get('/getGym/:id', function (req, res, next) {
 router.post('/addRoute', function (req, res) {
     res.status(200).json(req.body);
 });
-
-///testiramo
-//routeRepository.test()
-//routeRepository.test()
 
 module.exports = router;
 
