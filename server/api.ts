@@ -1,6 +1,8 @@
+import { RouteRepository } from './dal/repositories/routeRepository'
+import { RouteDB } from './dal/entities/routeDB';
 
-
-var routeRepository = require('./dal/repositories/routeRepository.ts')
+let routeRepo = new RouteRepository();
+let routeDB = new RouteDB();
 
 
 var express = require('express');
@@ -38,6 +40,7 @@ router.get('/getGym/:id', function (req, res, next) {
 
 // TODO: Method should retrun message in JSON if the route is succesfully recorded
 router.post('/addRoute', function (req, res) {
+    routeRepo.save(req.body, routeDB);
     res.status(200).json(req.body);
 });
 

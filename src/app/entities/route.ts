@@ -16,11 +16,5 @@ export class Route {
         this.description = "";
         this.photo = null;
         this.gym = {id: null, name: "", city: "",country: "", photo: null}
-        //this.gym.id = 7;
-        // this.gym.name = "";
-        // this.gym.city = "";
-        // this.gym.country = "";
-        // this.gym.photo = null;
     }
-
 }
