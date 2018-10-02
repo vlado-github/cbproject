@@ -3,8 +3,8 @@ export class Route {
     grade: string;
     description: string;
     photo: Blob;
+    gymId: number;
     gym: {
-        id: number;
         name: string;
         city: string;
         country: string;
@@ -15,6 +15,7 @@ export class Route {
         this.grade = "";
         this.description = "";
         this.photo = null;
-        this.gym = {id: null, name: "", city: "",country: "", photo: null}
+        this.gymId = null;
+        this.gym = {name: "", city: "",country: "", photo: null}
     }
 }

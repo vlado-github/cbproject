@@ -13,12 +13,6 @@ export default (sequelize, DataTypes) => {
           type: DataTypes.STRING
         }
       });
-
-    Gym.associate = (models) => {
-        // 1 to many with Route
-        Gym.hasMany(models.Route, {
-          foreignKey: 'gymId',
-        });
-      };
+      
     return Gym;
 };

@@ -21,7 +21,7 @@
   </div>
   <div class="form-group">
     <label for="routeGym">Gym:</label>
-    <select class="form-control" name="routeGym" #routeGym required (change)="addGymSection(routeGym.value)" [(ngModel)]="newRoute.gym.id">
+    <select class="form-control" name="routeGym" #routeGym required (change)="addGymSection(routeGym.value)" [(ngModel)]="newRoute.gymId">
       <option value="null" disabled>Select the gym</option>
       <option *ngFor="let gym of gyms" value="{{gym.id}}">{{gym.name}}, {{gym.city}}</option>
       <option value="null">+ Add new gym</option>

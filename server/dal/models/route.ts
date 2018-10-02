@@ -14,5 +14,12 @@ export default (sequelize, DataTypes) => {
         }
     });
 
+    Route.associate = (models) => {
+        // 1 to many with Route
+        Route.belongsTo(models.Gym, {
+          foreignKey: 'gymId',
+        });
+      };
+
     return Route;
 };
