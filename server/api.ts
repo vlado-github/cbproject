@@ -1,8 +1,28 @@
 import { RouteRepository } from './dal/repositories/routeRepository'
 import { RouteDB } from './dal/entities/routeDB';
+import { TestRepository } from './dal/repositories/testRepository';
+import { proba } from './dal/models/test'
+proba();
 
 let routeRepo = new RouteRepository();
 let routeDB = new RouteDB();
+
+
+let testRepo = new TestRepository;
+let mojtest = {
+    name: "string",
+    grade: "string",
+    description: "string",
+    photo: "Blob",
+    gyms: {
+        name: "string",
+        city: "string",
+        country: "string",
+        photo: "Blob"
+    }
+}
+
+//testRepo.save(mojtest);
 
 
 var express = require('express');

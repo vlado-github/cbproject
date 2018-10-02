@@ -1,4 +1,4 @@
-var Sequelize = require('sequelize');
+import Sequelize from 'sequelize';
 
 //database connection
 export var sequelize = new Sequelize({
