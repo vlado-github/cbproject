@@ -3,8 +3,8 @@ import {sequelize} from '../dbcontext'
 
 
 const db = {
-    Route: sequelize.import('./route'),
-    Gym: sequelize.import('./gym'),
+    Route: sequelize.import('./routeDB'),
+    Gym: sequelize.import('./gymDB'),
     sequelize: sequelize
   };
   // Executing defined association

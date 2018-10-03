@@ -1,4 +1,4 @@
-export interface Read <T> {
-    getAll(): Promise <T[]>;
-    getByID(id: number): Promise <T>;
+export interface IRead <T> {
+    //getAll(): Promise <T[]>;
+    getByID(id: number);
 }

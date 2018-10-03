@@ -1,15 +1,19 @@
 // import { RouteRepository } from './dal/repositories/routeRepository'
 // import { RouteDB } from './dal/entities/routeDB';
 import { TestRepository } from './dal/repositories/testRepository';
+import { Route2Repository } from './dal/repositories/route2Repository'
 // import { proba } from './dal/models/test'
 // proba();
 
 // let routeRepo = new RouteRepository();
 // let routeDB = new RouteDB();
+let route2Repo = new Route2Repository;
+route2Repo.getByID(13)
 
 
-let testRepo = new TestRepository;
 
+//let testRepo = new TestRepository;
+//testRepo.getByID(14)
 
 
 var express = require('express');
@@ -47,7 +51,7 @@ router.get('/getGym/:id', function (req, res, next) {
 
 // TODO: Method should retrun message in JSON if the route is succesfully recorded
 router.post('/addRoute', function (req, res) {
-    testRepo.save(req.body);
+    //testRepo.save(req.body);
     // routeRepo.save(req.body, routeDB);
     res.status(200).json(req.body);
 });

@@ -10,9 +10,9 @@ export default (sequelize, DataTypes) => {
           type: DataTypes.STRING
         },
         photo: {
-          type: DataTypes.STRING
+          type: DataTypes.BLOB
         }
       });
-      
+
     return Gym;
 };

@@ -1,4 +1,4 @@
-import { Read } from "./interfaces/readInterface";
+import { IRead } from "./interfaces/readInterface";
 import { Write } from "./interfaces/writeInterface";
 import { Model } from '../entities/model'
 
