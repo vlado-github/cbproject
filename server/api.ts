@@ -1,16 +1,70 @@
+import { sequelize } from './dal/dbcontext'
+
 // import { RouteRepository } from './dal/repositories/routeRepository'
 // import { RouteDB } from './dal/entities/routeDB';
 import { TestRepository } from './dal/repositories/testRepository';
 import { Route2Repository } from './dal/repositories/route2Repository'
-// import { proba } from './dal/models/test'
-// proba();
+import Route  from './dal/modeli/route';
+import Gym  from './dal/modeli/gym';
+import { RouteRepo } from './dal/repositories/routeRepo'
+
+let ruta = new Route({name: "Test", grade: "44", description:"sdf", photo: "iojoj"})
+// let sala = new Gym({name: "Test", city: "Banja Luka", country:"Moja zemlja", photo: "iojoj"})
+
+
+let routeRepo = new RouteRepo();
+//routeRepo.create(ruta).then(() => console.log("Upisana ruta"))
+
+routeRepo.create(ruta).then((item)=> console.log(item))
+
 
 // let routeRepo = new RouteRepository();
 // let routeDB = new RouteDB();
-let route2Repo = new Route2Repository;
-route2Repo.getByID(13)
+// let route2Repo = new Route2Repository;
+// route2Repo.getByID(13)
 
 
+// // CUVANJE RADI
+// sequelize.sync({force: true}).then(()=> {  
+//         const ruta = new Route({name: "Test", grade: "44", description:"sdf", photo: "iojoj", gym: {name: "test"}},{ include: [Gym] });
+//     ruta.save()
+// });
+
+// sequelize.sync({force: true}).then(()=> {  
+//     let sala = new Gym({name: "Moja sala"}, { include: [Route]})
+//     let ruta = new Route({name: "Test", grade: "44", description:"sdf", photo: "iojoj", gymId: sala.id});
+//     ruta.save()
+// });
+
+// (async () => {
+//     await sequelize.sync({force: true})
+//     let sala = await Gym.create({name: "Moja sala"}, { include: [Route]})
+//     console.log(sala.toJSON());
+
+//     let ruta = await new Route({name: "Test", grade: "44", description:"sdf", photo: "iojoj", gymId: sala.id});
+//     ruta.save()
+// })();
+
+
+ //insert nested
+    // let person = await Person.findOne({ include: [Item] });
+    // console.log(person.toJSON());
+
+    // let item = new Item({
+    //     id: '12321',
+    //     itemName: 'test',
+    //     itemType: 'test',
+    //     personId: person.id
+    // }, null);
+
+
+    // await item.save();
+
+    //retrieve nested
+    // let items = await Item.findAll({ include: [Person] })
+    // items.map((i) => console.log(i.toJSON()))
+
+    
 
 //let testRepo = new TestRepository;
 //testRepo.getByID(14)
@@ -53,6 +107,7 @@ router.get('/getGym/:id', function (req, res, next) {
 router.post('/addRoute', function (req, res) {
     //testRepo.save(req.body);
     // routeRepo.save(req.body, routeDB);
+    
     res.status(200).json(req.body);
 });
 

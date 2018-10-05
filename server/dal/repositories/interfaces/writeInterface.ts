@@ -1,3 +1,3 @@
-export interface Write<T,G> {
-    save(obj: T, dbmodel: G);
+export interface IWrite<T> {
+    create(item: T): void;
 }

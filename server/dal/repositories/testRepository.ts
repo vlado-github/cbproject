@@ -15,18 +15,18 @@ export class TestRepository {
             }
             )
     }
-    getByID(id: number) {
-        models.sequelize.sync()
-            .then(() => {
-                models.Route.findOne({ 
-                    where: { 
-                        id: id 
-                    } 
-                })
-                .then(users => {
-                    console.log(users.dataValues)
-                })
-            }
-            )
-    }
+    // getByID(id: number) {
+    //     models.sequelize.sync()
+    //         .then(() => {
+    //             models.Route.findOne({ 
+    //                 where: { 
+    //                     id: id 
+    //                 } 
+    //             })
+    //             .then(users => {
+    //                 console.log(users.dataValues)
+    //             })
+    //         }
+    //         )
+    // }
 }
