@@ -3,7 +3,7 @@ import Gym from './gym'
 import Base from './base'
  
 @Table
-export default class Route extends Base {
+export default class Route extends Model<Route> {
 
   constructor(values?: any, options?: any) {
     super(values, options);

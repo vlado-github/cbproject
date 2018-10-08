@@ -1,21 +1,18 @@
-import { sequelize } from './dal/dbcontext'
-
-// import { RouteRepository } from './dal/repositories/routeRepository'
-// import { RouteDB } from './dal/entities/routeDB';
-import { TestRepository } from './dal/repositories/testRepository';
-import { Route2Repository } from './dal/repositories/route2Repository'
 import Route  from './dal/modeli/route';
 import Gym  from './dal/modeli/gym';
 import { RouteRepo } from './dal/repositories/routeRepo'
+import { GymRepo } from './dal/repositories/gymRepo'
 
-let ruta = new Route({name: "Test", grade: "44", description:"sdf", photo: "iojoj"})
+let ruta = new Route({name: "Test3", grade: "44", description:"sdf", photo: "iojoj"})
+let ruta2 = new Route({name: "Update2", grade: "22", description:"222", photo: "2222"})
+
 // let sala = new Gym({name: "Test", city: "Banja Luka", country:"Moja zemlja", photo: "iojoj"})
 
 
 let routeRepo = new RouteRepo();
-//routeRepo.create(ruta).then(() => console.log("Upisana ruta"))
-
-routeRepo.create(ruta).then((item)=> console.log(item))
+let gymRepo = new GymRepo();
+// routeRepo.update(4,{name:"Bez Base",grade:"osmica"}).then((ruta)=>console.log(ruta))
+// routeRepo.create(ruta).then(()=> routeRepo.findById(3))
 
 
 // let routeRepo = new RouteRepository();
@@ -89,8 +86,8 @@ router.get('/', function (req, res, next) {
 
 // TODO: This method should return array of gyms object in bellow format
 router.get('/getGymsList', function (req, res, next) {
-    res.send([{ id: 1, name: "Extreme", city: "Banja Luka" }, { id: 2, name: "Sokolski dom", city: "Banja Luka" }, { id: 3, name: "Granit", city: "Beograd" }]);
-    //res.send(getGymsList())
+    gymRepo.getGymList().then((obj)=>res.send(JSON.stringify(obj)));
+    
 });
 
 // TODO: This method should return array of gyms objects in bellow format
@@ -103,11 +100,19 @@ router.get('/getGym/:id', function (req, res, next) {
     res.send(gymsMock[req.params.id - 1]);
 });
 
-// TODO: Method should retrun message in JSON if the route is succesfully recorded
+// TODO: Method should return message in JSON if the route is succesfully recorded
 router.post('/addRoute', function (req, res) {
-    //testRepo.save(req.body);
-    // routeRepo.save(req.body, routeDB);
-    
+    if(req.body.gymId=="null"){
+        let gym = new Gym(req.body.gym)
+        gymRepo.create(gym).then((gym)=> {
+            req.body.gymId=gym.dataValues.id;
+            let route = new Route (req.body)
+            routeRepo.create(route)
+        })
+    } else {
+        let route = new Route (req.body)
+        routeRepo.create(route)
+    } 
     res.status(200).json(req.body);
 });
 

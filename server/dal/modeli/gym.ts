@@ -4,7 +4,7 @@ import Route  from '../modeli/route';
 import Base  from '../modeli/base';
  
 @Table
-export default class Gym extends Base {
+export default class Gym extends Model<Gym>{
  
   constructor(values?: any, options?: any) {
     super(values, options);
