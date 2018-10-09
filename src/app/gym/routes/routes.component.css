@@ -1,8 +1,10 @@
 .title {
-    font-size: 1rem;
+    font-size: 1 rem;
     font-weight: 500;
     margin-top: 0.2rem;
+    margin-bottom: 0.4rem;
 }
+
 a {
     color: #212529;
 }
@@ -27,4 +29,10 @@ a:hover {
 }
 .image:hover {
     opacity: 0.6;
+}
+kbd {
+    background-color: #008590
+}
+.small {
+    margin-bottom: 0.5 rem;
 }

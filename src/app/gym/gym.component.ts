@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GymService } from '../gym.service';
 import { DomSanitizer } from '@angular/platform-browser';
-
+import { Gym } from '../entities/gym';
 
 @Component({
   selector: 'app-gym',
@@ -11,7 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class GymComponent implements OnInit {
 
-  gym: {id: number, name: string, city: string, countyr: string, photo: Blob};
+  gym: Gym;
 
   constructor(private route: ActivatedRoute, private gymService: GymService, private sanitizer: DomSanitizer) { }
 

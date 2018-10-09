@@ -1,4 +1,4 @@
-export class Route {
+export class ClimbingRoute {
     name: string;
     grade: string;
     description: string;

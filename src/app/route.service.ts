@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Route } from './entities/route'
+import { ClimbingRoute } from './entities/climbingRoute'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,10 +15,11 @@ const httpOptions = {
 export class RouteService {
 
   addRouteUrl = '/api/addRoute'
+  getRoutesUrl = '/api/getRoutes'
   
    
   // Adds a new route to the server
-  addRoute(newRoute: Route): Observable<any> {
+  addRoute(newRoute: ClimbingRoute): Observable<any> {
     return this.http.post<any>(this.addRouteUrl, newRoute, httpOptions)
     .pipe(
       catchError(this.handleError<any>('addRoute'))
@@ -27,7 +28,12 @@ export class RouteService {
   
   constructor(private http: HttpClient) { }
 
-  
+  getRoutes(id: number): Observable <any> {
+    return this.http.get<any>(this.getRoutesUrl+ "/" + id).pipe(
+      catchError(this.handleError('getRoutes', 'any'))
+    );
+
+  }
 
 
   // Handle Http operation that failed.

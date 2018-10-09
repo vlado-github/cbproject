@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GymService } from '../../gym.service';
+import { Gym } from '../../entities/gym';
 
 
 @Component({
@@ -9,11 +10,9 @@ import { GymService } from '../../gym.service';
 })
 export class GymsComponent implements OnInit {
 
-  gyms: {id: number, name: string, city: string, countyr: string, photo: Blob}[];
+  gyms: Gym[];
 
   constructor(private gymService: GymService) { }
-
- 
 
   ngOnInit() {
     this.getGyms();

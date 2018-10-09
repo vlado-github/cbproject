@@ -1,4 +1,4 @@
-import {Table, Column, Model, ForeignKey, DataType, BelongsTo} from 'sequelize-typescript';
+import {Table, Column, Model, ForeignKey, DataType, BelongsTo, CreatedAt, UpdatedAt, DeletedAt} from 'sequelize-typescript';
 import Gym from './gym'
  
 @Table
@@ -19,6 +19,15 @@ export default class Route extends Model<Route> {
 
   @Column(DataType.TEXT("long"))
   photo: Text;
+
+  @CreatedAt
+  creationDate: Date;
+ 
+  @UpdatedAt
+  updatedOn: Date;
+  
+  @DeletedAt
+  deletionDate: Date;
 
   @ForeignKey(() => Gym)
   @Column

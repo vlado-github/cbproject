@@ -40,6 +40,11 @@ router.get('/getGyms', function (req, res, next) {
     gymRepo.findAll().then((gyms)=>res.send(JSON.stringify(gyms)));
 });
 
+// Returns array of all gyms, TODO: Pagination
+router.get('/getRoutes/:id', function (req, res, next) {
+    routeRepo.findByQueryParam(req.params.id).then((routes)=>res.send(JSON.stringify(routes)));
+});
+
 // Returns data for a single gym
 router.get('/getGym/:id', function (req, res, next) {
     gymRepo.findById(req.params.id).then((gym)=>
@@ -54,14 +59,14 @@ router.post('/addRoute', function (req, res) {
         gymRepo.create(gym).then((gym)=> {
             req.body.gymId=gym.dataValues.id;
             let route = new Route (req.body)
-            routeRepo.create(route)
+            routeRepo.create(route).then((myroute)=>res.status(200).json(myroute.dataValues.gymId))
         })
     // if exiwting gym is selected, adds new route
     } else {
+        debugger;
         let route = new Route (req.body)
-        routeRepo.create(route)
+        routeRepo.create(route).then((myroute)=>res.status(200).json(myroute.dataValues.gymId))
     } 
-    res.status(200).json(req.body);
 });
 
 module.exports = router;

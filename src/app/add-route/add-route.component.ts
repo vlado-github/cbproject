@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteService } from '../route.service';
 import { GymService } from '../gym.service';
-
-import { Route } from '../entities/route';
+import { Gym } from '../entities/gym'
+import { ClimbingRoute } from '../entities/climbingRoute';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -260,13 +261,12 @@ export class AddRouteComponent implements OnInit {
     { name: 'Zambia', code: 'ZM' },
     { name: 'Zimbabwe', code: 'ZW' }
   ]
-  gyms: {id: number, name: string, city: string}[];
+  gyms: Gym[];
   showAddGymFields: boolean = false;
   routePhotoFake;
   gymPhotoFake;
 
-  newRoute = new Route();
-  
+  newRoute = new ClimbingRoute();
   
   submitted = false;
 
@@ -276,7 +276,8 @@ export class AddRouteComponent implements OnInit {
   }
 
   constructor(private routeService: RouteService,
-    private gymService: GymService) {
+    private gymService: GymService, private route: ActivatedRoute,
+    private router: Router) {
   }
   // TODO: Remove this when we're done
   diagnostic() { return JSON.stringify(this.newRoute)} 
@@ -291,7 +292,7 @@ export class AddRouteComponent implements OnInit {
 
   addRoute(newRoute): void {
     // tu hedlati success response
-    this.routeService.addRoute(newRoute).subscribe(jsonObj => console.log("Odgovor servera na addRoute" + JSON.stringify(jsonObj)));
+    this.routeService.addRoute(newRoute).subscribe(gymId => this.router.navigate(['/gym/' + gymId]));
   }
 
   // Loading of additional fields in case user select Add new gym

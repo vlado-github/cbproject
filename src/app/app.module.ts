@@ -13,6 +13,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { GymsComponent } from './homepage/gyms/gyms.component';
 import { GymComponent } from './gym/gym.component';
+import { RoutesComponent } from './gym/routes/routes.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { GymComponent } from './gym/gym.component';
     HomepageComponent,
     HeaderComponent,
     GymsComponent,
-    GymComponent
+    GymComponent,
+    RoutesComponent
   ],
   imports: [
     BrowserModule,

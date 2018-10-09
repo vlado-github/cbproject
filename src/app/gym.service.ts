@@ -31,7 +31,6 @@ export class GymService {
 
   //gets a specific gym by ID from server 
   getGym(id: number): Observable<any> {
-    console.log(this.getGymUrl + "/:" + id)
     return this.http.get<any>(this.getGymUrl + "/" + id).pipe(
       catchError(this.handleError('getGym', 'any'))
     );
