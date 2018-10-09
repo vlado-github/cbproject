@@ -1,24 +1,34 @@
-
 //Gym entity
 
 var sequelize = require('../dbcontext.ts');
 var Sequelize = require('sequelize');
 
-var Gym = sequelize.define('gyms', {
+
+//Create Table: gyms
+
+var addGym = sequelize.define('gyms', {
   name: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: false
   },
   city: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: false
   },
   country: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: false
   },
-  photo: {
-    type: Sequelize.STRING
+  image_type: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  image: {
+    type: Sequelize.BLOB('long'),
+    allowNull: false
   }
 });
 
 
 
-module.exports = Gym;
+module.exports = addGym;

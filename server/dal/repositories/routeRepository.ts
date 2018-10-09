@@ -1,38 +1,33 @@
-//t
 var sequelize = require('../dbcontext.ts');
-var Route = require('../entities/route.ts');
-var Gym = require('../entities/gym.ts');
+var routeSave = require('../entities/route.ts');
+var FS = require('fs');
 
+sequelize.sync({
+	force: true,
+	logging: console.log
 
-// Upis i pravljenje tabele route
-let upisiTest = sequelize.sync()
-  .then(() => Route.create({
-    name: 'Route test',
-    grade: '7a+',
-    description: 'This route are awesome',
-    photo: 'ruta.jpg',
-    gymID: 1,
-    created: new Date(2018, 11, 9)
-  }))
-  .then(jane => {
-    console.log(jane.toJSON());
-  });
+}).then(function () {
+  console.log('Everything is synced');
+  
+	var tmpFile = '/../static/assets/tmp/test-image.png'; // Slika koja se čuva
+	var gymFile = '/../static/assets/images/gym-img/target.png'; // Folder za čuvanje slike
+	
+	
+	var imageData = FS.readFileSync(__dirname + tmpFile);
 
-
-
-let upisiTest2 = sequelize.sync()
-  .then(() => Gym.create({
-    name: 'New gym',
-    city: 'Belegrade',
-    country: 'Serbia',
-    photo: 'gym-photo.jpg',
-  }))
-  .then(jane => {
-    console.log(jane.toJSON());
-  });
-
-
-//  module.exports = {
-//    test() { console.log("TEST USPJESAN!") }
-//  };
-
+	routeSave.create({
+		name: 'Route test',
+		grade: '7a+',
+		description: 'This route are awesome',
+		gymID: 1,
+		image_type: 'png',
+		image_route: gymFile, // Putanja do slike
+		image_data: imageData
+	}).then(function (image_store) {
+		try {
+			FS.writeFileSync(__dirname + gymFile, image_store.name);
+		} catch (e) {
+			console.log(e+'');
+		}
+	});
+});
