@@ -1,7 +1,12 @@
-import { BaseRepository } from './baseRepository';
-import { Route } from '../entities/route'
-import { RouteDB } from '../entities/routeDB'
+import { BaseRepository } from './baseRepository'
+import Route from '../models/route'
 
-export class RouteRepository extends BaseRepository<Route, RouteDB> {
-    
+
+export class RouteRepository extends BaseRepository<Route> {
+    constructor(){
+        super();
+        this.model = Route;
+    }
+
+   
 }

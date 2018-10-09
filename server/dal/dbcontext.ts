@@ -24,6 +24,6 @@ export const sequelize =  new Sequelize({
         username: 'root',
         password: null,
         storage: ':memory:',
-        modelPaths: [__dirname + '/modeli/*']
+        modelPaths: [__dirname + '/models/*']
 });
 

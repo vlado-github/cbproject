@@ -1,7 +1,5 @@
 import {Table, Column, Model, HasMany, DataType} from 'sequelize-typescript';
-import { DataTypes } from 'sequelize'
-import Route  from '../modeli/route';
-import Base  from '../modeli/base';
+import Route  from './route';
  
 @Table
 export default class Gym extends Model<Gym>{
@@ -9,7 +7,6 @@ export default class Gym extends Model<Gym>{
   constructor(values?: any, options?: any) {
     super(values, options);
 }
-
 
   @Column(DataType.STRING)
   name: string;
@@ -20,8 +17,8 @@ export default class Gym extends Model<Gym>{
   @Column(DataType.STRING)
   country: string;
 
-  @Column(DataType.STRING)
-  photo: string;
+  @Column(DataType.TEXT("long"))
+  photo: Text;
 
   @HasMany(() => Route)
   routes: Route[];

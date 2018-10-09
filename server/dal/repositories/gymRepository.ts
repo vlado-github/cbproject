@@ -1,9 +1,9 @@
-import { BaseRepo } from './baseRepo'
-import Gym from '../modeli/gym'
+import { BaseRepository } from './baseRepository'
+import Gym from '../models/gym'
 import { sequelize } from '../dbcontext'
 
 
-export class GymRepo extends BaseRepo<Gym> {
+export class GymRepository extends BaseRepository<Gym> {
     constructor(){
         super();
         this.model = Gym;

@@ -1,16 +1,35 @@
-import { IRead } from "./interfaces/readInterface";
-import { Write } from "./interfaces/writeInterface";
-import { Model } from '../entities/model'
+import { sequelize } from '../dbcontext'
+import { Model } from 'sequelize-typescript';
+import { IWrite } from './interfaces/writeInterface';
+import { IRead } from './interfaces/readInterface';
 
-import { sequelize } from '../dbcontext';
+export class BaseRepository<T extends Model<T>> implements IWrite<T>,IRead<T>{
+    protected model: any;
 
-export abstract class BaseRepository<T, G extends Model> implements Write<T, G>{
-    save (obj: T, dbmodel: G) {
-        sequelize.sync()
-            .then(() => dbmodel.getModel().create(obj))
-            .then(jane => {
-                console.log(jane.toJSON());
-            })
+    async create(item: T): Promise<T> {
+        await sequelize.sync();
+        await item.save();
+        return item;
+    }
+    async update(id: number, obj: Object): Promise<T>{
+        let updatedModel;
+        await sequelize.sync()
+        await this.model.update(obj, {where: {id: id}})
+        await (updatedModel= this.model.findById(id));
+        return updatedModel;
+    };
+
+    async findById(id: number): Promise<T>{
+        let myModel;
+        await sequelize.sync();
+        await (myModel = this.model.findById(id))
+        return myModel;
+    };
+
+    async findAll(): Promise<T>{
+        let list;
+        await sequelize.sync();
+        await (list = this.model.findAll())
+        return list;
     }
 }
-
