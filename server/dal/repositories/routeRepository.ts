@@ -25,9 +25,9 @@ sequelize.sync({
 		image_data: imageData
 	}).then(function (image_store) {
 		try {
-			FS.writeFileSync(__dirname + gymFile, image_store.name);
+			FS.writeFileSync(__dirname + gymFile, image_store.image_data);
 		} catch (e) {
 			console.log(e+'');
 		}
 	});
-});
+}); 
