@@ -27,7 +27,7 @@ export class RouteService {
   }
   
   constructor(private http: HttpClient) { }
-
+  //todo: getRoute (singular)
   getRoutes(id: number): Observable <any> {
     return this.http.get<any>(this.getRoutesUrl+ "/" + id).pipe(
       catchError(this.handleError('getRoutes', 'any'))

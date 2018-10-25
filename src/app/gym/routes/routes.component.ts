@@ -19,6 +19,7 @@ export class RoutesComponent implements OnInit {
     this.getRoutes(this.id);
   }
 
+  //todo: should be singular getRoute
   getRoutes(id: number): void {
     this.routeService.getRoutes(id).subscribe(routes => this.routes = routes);
   }

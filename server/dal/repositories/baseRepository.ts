@@ -26,6 +26,7 @@ export class BaseRepository<T extends Model<T>> implements IWrite<T>,IRead<T>{
         return myModel;
     };
 
+    //todo: use param, never return all
     async findAll(): Promise<T>{
         let list;
         await sequelize.sync();

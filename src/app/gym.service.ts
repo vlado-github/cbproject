@@ -23,6 +23,7 @@ export class GymService {
   }
 
   //gets a list of gyms with photos from server 
+  //todo: use paging or offset, never select all
   getGyms(): Observable<any> {
     return this.http.get<any>(this.getGymsUrl).pipe(
       catchError(this.handleError('getGyms', 'any'))

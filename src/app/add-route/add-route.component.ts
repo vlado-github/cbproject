@@ -13,7 +13,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class AddRouteComponent implements OnInit {
-
+  //todo: use some constnat values that are globally accessable to all project sections
+  //todo: you can use a DB for lookup tables
   grades: string[] = ['1', '2', '3', '4', '4+', '5', '5+', '6a', '6a+', '6b', '6b+', '6c', '6c+', '7a', '7a+', '7b', '7b+', '7c', '7c+', '8a', '8a+', '8b', '8b+', '8c', '8c+', '9a']
   countries = [
     { name: 'Afghanistan', code: 'AF' },
